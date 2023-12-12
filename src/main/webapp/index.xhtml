@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>1TimBet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="#{resource['images/logo.png']}"/>
+    <h:outputScript library="js" name="clock.js"/>
+</h:head>
+<h:body>
+    <div class="header">
+        <a href="https://github.com/sleeter" target="_blank"><img alt="Логотип" src="resources/images/logo.png"></img></a>
+        <div>
+            <span>
+                <a href="https://t.me/sleeter" target="_blank">Бадамханов Тимур P3207</a>
+            </span>
+            <span>
+                <a href="https://se.ifmo.ru/courses/web" target="_blank">Вариант 17228</a>
+            </span>
+        </div>
+    </div>
+    <div class="navigation">
+        <p>Добро пожаловать на сайт 1TimBet</p>
+    </div>
+    <h:link outcome="toMain" value="На главную" styleClass="pointer link"/>
+    <div id="clock-container">
+        <div id="clock"></div>
+    </div>
+</h:body>
 </html>
