@@ -14,10 +14,120 @@
     <meta name="description" content="third lab work for web-programming" />
     <link rel="shortcut icon" href="#{resource['images/logo.png']}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <h:outputScript library="js" name="checkbox-listner.js"/>
+    <h:outputScript library="js" name="graph-updater.js"/>
+    <h:outputStylesheet library="css" name="style-main.css"/>
 </h:head>
 <h:body>
     <nav class="menu">
-        <h:link outcome="toIndex" value="Вернуться назад" styleClass="pointer link"/>
+        <h:link outcome="toIndex" value="Вернуться назад"/>
     </nav>
+    <h:form id="form">
+        <div id="X">
+            Выберите X:
+            <table class="X-values">
+                <tr>
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value-2" onclick="checkboxListener()">
+                        <f:ajax/>
+                    </h:selectBooleanCheckbox>
+                        <h:outputLabel for="value-2">-2</h:outputLabel></td>
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value-1x5" onclick="checkboxListener()">
+                        <f:ajax/>
+                    </h:selectBooleanCheckbox>
+                        <h:outputLabel for="value-1x5">-1.5</h:outputLabel></td>
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value-1" onclick="checkboxListener()">
+                        <f:ajax/>
+                    </h:selectBooleanCheckbox>
+                        <h:outputLabel for="value-1">-1</h:outputLabel></td>
+                </tr>
+                <tr>
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value-0x5" onclick="checkboxListener()">
+                        <f:ajax/>
+                    </h:selectBooleanCheckbox>
+                        <h:outputLabel for="value-0x5">-0.5</h:outputLabel></td>
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value0" onclick="checkboxListener()">
+                        <f:ajax/>
+                    </h:selectBooleanCheckbox>
+                        <h:outputLabel for="value0">0</h:outputLabel></td>
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value0x5" onclick="checkboxListener()">
+                        <f:ajax/>
+                    </h:selectBooleanCheckbox>
+                        <h:outputLabel for="value0x5">0.5</h:outputLabel></td>
+                </tr>
+                <tr>
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value1" onclick="checkboxListener()">
+                        <f:ajax/>
+                    </h:selectBooleanCheckbox>
+                        <h:outputLabel for="value1">1</h:outputLabel></td>
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value1x5" onclick="checkboxListener()">
+                        <f:ajax/>
+                    </h:selectBooleanCheckbox>
+                        <h:outputLabel for="value1x5">1.5</h:outputLabel></td>
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value2" onclick="checkboxListener()">
+                        <f:ajax/>
+                    </h:selectBooleanCheckbox>
+                        <h:outputLabel for="value2">2</h:outputLabel></td>
+                </tr>
+            </table>
+        </div>
+        <div id="Y">
+            Введите Y [-3; 3]:
+            <br/>
+            <h:inputText id="Y-value" styleClass="y-value" value="#{dotBean.dot.y}" required="true" requiredMessage="Введите Y" validatorMessage="Не входит в [-3..3]" converterMessage="Введите число" maxlength="4">
+                <f:validateDoubleRange minimum="-3" maximum="3"/>
+                <f:ajax render="Y-value-message"/>
+            </h:inputText>
+            <h:message id="Y-value-message" for="Y-value" styleClass="error"/>
+        </div>
+        <div id="R">
+            Введите R [1; 4]:
+            <br/>
+            <h:inputText id="R-value" styleClass="r-value" value="#{dotBean.dot.r}" onchange="updateMapWithR()" required="true" requiredMessage="Введите R" validatorMessage="Не входит в [1..4]" converterMessage="Введите число" maxlength="4">
+                <f:validateDoubleRange minimum="1" maximum="4"/>
+                <f:ajax render="R-value-message"/>
+            </h:inputText>
+            <h:message id="R-value-message" for="R-value" styleClass="error"/>
+        </div>
+    </h:form>
+    <h:form id="graph-container">
+        <ui:include src="graph.xhtml"/>
+    </h:form>
+    <div id="button-container">
+        <h:commandButton type="submit" id="check" styleClass="pointer button" value="Проверить" action="#{dotBean.add()}">
+            <f:ajax render="results graph-container" onevent="updateMapWithR"/>
+        </h:commandButton>
+        <h:commandButton type="button" id="clear" styleClass="pointer button" value="Очистить" action="#{dotBean.clear()}" onclick="clearGraph()">
+            <f:ajax render="results"/>
+        </h:commandButton>
+    </div>
+    <h:panelGroup layout="block" id="table-container">
+        <h:dataTable styleClass="table" id="results" var="dot" value="#{dotBean.dotsList}">
+            <h:column styleClass="table-value">
+                <f:facet name="header">X</f:facet>
+                <h:outputText id="x" value="#{dot.x}"/>
+            </h:column>
+            <h:column styleClass="table-value">
+                <f:facet name="header">Y</f:facet>
+                <h:outputText id="y" value="#{dot.y}"/>
+            </h:column>
+            <h:column styleClass="table-value">
+                <f:facet name="header">R</f:facet>
+                <h:outputText id="r" value="#{dot.r}"/>
+            </h:column>
+            <h:column styleClass="table-value">
+                <f:facet name="header">Текущее время</f:facet>
+                <h:outputText id="time" value="#{dot.time}"/>
+            </h:column>
+            <h:column styleClass="table-value">
+                <f:facet name="header">Время работы (мкс)</f:facet>
+                <h:outputText id="script-time" value="#{dot.scriptTime}"/>
+            </h:column>
+            <h:column styleClass="table-value">
+                <f:facet name="header">Результат</f:facet>
+                <h:outputText id="status" value="#{dot.stringStatus}"/>
+            </h:column>
+        </h:dataTable>
+    </h:panelGroup>
+
 </h:body>
 </html>

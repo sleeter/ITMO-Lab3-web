@@ -1,0 +1,133 @@
+* {
+    font-family: Calibri, sans-serif;
+    color: black;
+    background-color: white;
+}
+.pointer {cursor: pointer;}
+#data-container{
+    grid-area: data-container;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+#X{
+    padding: 15px 15px 15px 15px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.X-values{
+    width: 100%;
+    margin-top: 10px;
+    text-align: left;
+    border: none;
+    border-collapse: collapse;
+    align-self: center;
+}
+
+.X-values td {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+#Y{
+    padding: 15px 15px 15px 15px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.y-value, .r-value{
+}
+
+#R{
+    padding: 15px 15px 15px 15px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.error{
+    font-size: small;
+    color: red;
+    padding-left: 3px;
+}
+
+#graph-container{
+    padding-top: 15px;
+    grid-area: graph-container;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+svg text, #arrow{
+    fill: white;
+}
+
+svg #triangle, #rectangle, #circle{
+    fill: white;
+}
+
+#button-container{
+    margin-top: 20px;
+    grid-area: button-container;
+}
+
+.button {
+    background-color: black;
+    color: white;
+    border: white;
+    border-radius: 10px;
+    font-family: 'Unbounded', cursive;
+    font-size: medium;
+    font-weight: 300;
+    text-align: center;
+    padding: 7px 12px 7px 12px;
+    transition: color 100ms;
+    margin-right: 2%;
+}
+
+.button:hover{
+    background-color: grey;
+}
+
+.button:active{
+    background-color: lightgray;
+    transition: color 100ms;
+}
+
+#table-container{
+    margin-top: 2%;
+    padding: 10px 10px 10px 10px;
+    grid-area: table-container;
+    background-color: black;
+    border-radius: 10px;
+}
+
+#results {
+    width: 100%;
+    border-collapse: collapse;
+    border-style: hidden;
+    text-align: center;
+}
+
+#results th {
+    font-weight: 400;
+    border: 1px white solid;
+}
+
+#results td {
+    font-weight: 300;
+    border: 1px white solid;
+}
+
+footer{
+    grid-area: footer;
+    text-align: center;
+}
+.graph {
+    background-color: grey;
+}

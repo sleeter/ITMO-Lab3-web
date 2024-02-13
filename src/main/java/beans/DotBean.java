@@ -13,6 +13,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.time.temporal.ChronoUnit.MINUTES;
@@ -25,7 +26,7 @@ public class DotBean  implements Serializable {
     private DotEntity dot;
     @Inject
     private DotDao dotDao;
-    private List<DotEntity> dotsList;
+    private List<DotEntity> dotsList = new ArrayList<>();
     private int timezone;
 
     @PostConstruct

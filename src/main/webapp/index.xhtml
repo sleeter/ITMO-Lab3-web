@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="#{resource['images/logo.png']}"/>
     <h:outputScript library="js" name="clock.js"/>
+    <h:outputStylesheet library="css" name="style-index.css"/>
 </h:head>
 <h:body>
     <div class="header">
@@ -23,9 +24,9 @@
     <div class="navigation">
         <p>Добро пожаловать на сайт 1TimBet</p>
     </div>
-    <h:link outcome="toMain" value="На главную" styleClass="pointer link"/>
-    <div id="clock-container">
-        <div id="clock"></div>
+    <h:link outcome="toMain" value="На главную" styleClass="pointer link" style="margin: 0 auto; display: block"/>
+    <div id="clock-container" style="text-align: center">
+        <div id="clock" style="color: white"></div>
     </div>
 </h:body>
 </html>
