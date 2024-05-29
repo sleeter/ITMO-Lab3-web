@@ -27,43 +27,43 @@
             Выберите X:
             <table class="X-values">
                 <tr>
-                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value-2" onclick="checkboxListener()">
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotCounter.dot.updateX}" id="value-2" onclick="checkboxListener()">
                         <f:ajax/>
                     </h:selectBooleanCheckbox>
                         <h:outputLabel for="value-2">-2</h:outputLabel></td>
-                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value-1x5" onclick="checkboxListener()">
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotCounter.dot.updateX}" id="value-1x5" onclick="checkboxListener()">
                         <f:ajax/>
                     </h:selectBooleanCheckbox>
                         <h:outputLabel for="value-1x5">-1.5</h:outputLabel></td>
-                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value-1" onclick="checkboxListener()">
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotCounter.dot.updateX}" id="value-1" onclick="checkboxListener()">
                         <f:ajax/>
                     </h:selectBooleanCheckbox>
                         <h:outputLabel for="value-1">-1</h:outputLabel></td>
                 </tr>
                 <tr>
-                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value-0x5" onclick="checkboxListener()">
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotCounter.dot.updateX}" id="value-0x5" onclick="checkboxListener()">
                         <f:ajax/>
                     </h:selectBooleanCheckbox>
                         <h:outputLabel for="value-0x5">-0.5</h:outputLabel></td>
-                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value0" onclick="checkboxListener()">
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotCounter.dot.updateX}" id="value0" onclick="checkboxListener()">
                         <f:ajax/>
                     </h:selectBooleanCheckbox>
                         <h:outputLabel for="value0">0</h:outputLabel></td>
-                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value0x5" onclick="checkboxListener()">
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotCounter.dot.updateX}" id="value0x5" onclick="checkboxListener()">
                         <f:ajax/>
                     </h:selectBooleanCheckbox>
                         <h:outputLabel for="value0x5">0.5</h:outputLabel></td>
                 </tr>
                 <tr>
-                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value1" onclick="checkboxListener()">
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotCounter.dot.updateX}" id="value1" onclick="checkboxListener()">
                         <f:ajax/>
                     </h:selectBooleanCheckbox>
                         <h:outputLabel for="value1">1</h:outputLabel></td>
-                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value1x5" onclick="checkboxListener()">
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotCounter.dot.updateX}" id="value1x5" onclick="checkboxListener()">
                         <f:ajax/>
                     </h:selectBooleanCheckbox>
                         <h:outputLabel for="value1x5">1.5</h:outputLabel></td>
-                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotBean.dot.updateX}" id="value2" onclick="checkboxListener()">
+                    <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotCounter.dot.updateX}" id="value2" onclick="checkboxListener()">
                         <f:ajax/>
                     </h:selectBooleanCheckbox>
                         <h:outputLabel for="value2">2</h:outputLabel></td>
@@ -73,7 +73,7 @@
         <div id="Y">
             Введите Y [-3; 3]:
             <br/>
-            <h:inputText id="Y-value" styleClass="y-value" value="#{dotBean.dot.y}" required="true" requiredMessage="Введите Y" validatorMessage="Не входит в [-3..3]" converterMessage="Введите число" maxlength="4">
+            <h:inputText id="Y-value" styleClass="y-value" value="#{dotCounter.dot.y}" required="true" requiredMessage="Введите Y" validatorMessage="Не входит в [-3..3]" converterMessage="Введите число" maxlength="4">
                 <f:validateDoubleRange minimum="-3" maximum="3"/>
                 <f:ajax render="Y-value-message"/>
             </h:inputText>
@@ -82,7 +82,7 @@
         <div id="R">
             Введите R [1; 4]:
             <br/>
-            <h:inputText id="R-value" styleClass="r-value" value="#{dotBean.dot.r}" onchange="updateMapWithR()" required="true" requiredMessage="Введите R" validatorMessage="Не входит в [1..4]" converterMessage="Введите число" maxlength="4">
+            <h:inputText id="R-value" styleClass="r-value" value="#{dotCounter.dot.r}" onchange="updateMapWithR()" required="true" requiredMessage="Введите R" validatorMessage="Не входит в [1..4]" converterMessage="Введите число" maxlength="4">
                 <f:validateDoubleRange minimum="1" maximum="4"/>
                 <f:ajax render="R-value-message"/>
             </h:inputText>
@@ -93,15 +93,15 @@
         <ui:include src="graph.xhtml"/>
     </h:form>
     <div id="button-container">
-        <h:commandButton type="submit" id="check" styleClass="pointer button" value="Проверить" action="#{dotBean.add()}">
+        <h:commandButton type="submit" id="check" styleClass="pointer button" value="Проверить" action="#{dotCounter.addResult()}">
             <f:ajax render="results graph-container" onevent="updateMapWithR"/>
         </h:commandButton>
-        <h:commandButton type="button" id="clear" styleClass="pointer button" value="Очистить" action="#{dotBean.clear()}" onclick="clearGraph()">
+        <h:commandButton type="button" id="clear" styleClass="pointer button" value="Очистить" action="#{dotCounter.clearResult()}" onclick="clearGraph()">
             <f:ajax render="results"/>
         </h:commandButton>
     </div>
     <h:panelGroup layout="block" id="table-container">
-        <h:dataTable styleClass="table" id="results" var="dot" value="#{dotBean.dotsList}">
+        <h:dataTable styleClass="table" id="results" var="dot" value="#{dotCounter.results}">
             <h:column styleClass="table-value">
                 <f:facet name="header">X</f:facet>
                 <h:outputText id="x" value="#{dot.x}"/>
